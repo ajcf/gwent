@@ -1,0 +1,8 @@
+const FACTIONS = {
+  NEUTRAL = 1,
+  NORTHERN_REALMS = 2,
+  NILFGAARD = 3,
+  MONSTERS = 4,
+  SCOIA_TAEL = 5,
+  SKELLIGE = 6,
+};
