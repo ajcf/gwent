@@ -1,12 +1,17 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
 
-app.get('/', function(req, res) {
-  res.send('Hello World!');
-});
+const app = express();
+app.use(bodyParser.json());
 
-app.get('/test', function(req, res) {
-  res.send('Hello World from test!');
+// serve the build directory
+// note that public directory is copied to buid directory upon running build script
+app.use(express.static(path.join(__dirname, '../build'), { index: false })); // index : false is to allow request for the webroot to get caught by 'app.get('/*', function(req, res)', allowing http to https redirects, if neccessary
+
+// serve the index
+app.get('/*', function (req, res) {
+		res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
 app.listen(3001, function() {
